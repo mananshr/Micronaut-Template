@@ -1,0 +1,73 @@
+# Build / IDE
+/.gradle/
+/build/
+/out/
+/target/
+
+# JetBrains IntelliJ IDEA
+/.idea/
+/*.iml
+*.iws
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/shelf/
+.idea/**/dictionaries/
+
+# VS Code
+/.vscode/
+/.vscode/*
+
+# Eclipse
+/.classpath
+/.project
+/.settings/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+/logs/
+*.log
+
+# Java artifacts
+*.jar
+*.war
+*.nar
+*.ear
+*.class
+
+# Gradle wrapper / caches
+.gradle/
+gradle-app.setting
+
+# Micronaut / runtime config that may contain secrets
+gradle.properties
+.env
+.env.*
+.env.local
+
+# application config (if used locally for secrets)
+src/main/resources/application.yml
+src/main/resources/application.properties
+src/test/resources/application-test.yml
+src/test/resources/application.properties
+
+# Keystores and certificates
+*.jks
+*.keystore
+*.p12
+*.pem
+
+# Sensitive IDE/local files
+local.properties
+credentials.properties
+.idea_modules/
+
+# Misc
+/.idea_modules/
+
+# Editor backup files
+*~
+*.swp
+*.swo

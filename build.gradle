@@ -1,0 +1,105 @@
+plugins {
+    id("io.micronaut.application") version "4.5.4"
+    id("com.gradleup.shadow") version "8.3.7"
+    id("org.asciidoctor.jvm.convert") version "4.0.5"
+    id("io.micronaut.aot") version "4.5.4"
+}
+
+version = "0.1"
+group = "io.github.mananshr.crud"
+
+apply from: "gradle/asciidoc.gradle"
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    annotationProcessor("org.projectlombok:lombok")
+    annotationProcessor("io.micronaut.data:micronaut-data-document-processor")
+    annotationProcessor("io.micronaut:micronaut-http-validation")
+    annotationProcessor("io.micronaut.langchain4j:micronaut-langchain4j-processor")
+    annotationProcessor("io.micronaut.microstream:micronaut-microstream-annotations")
+    annotationProcessor("io.micronaut.openapi:micronaut-openapi")
+    annotationProcessor("io.micronaut.openapi:micronaut-openapi-adoc")
+    annotationProcessor("io.micronaut.security:micronaut-security-annotations")
+    annotationProcessor("io.micronaut.serde:micronaut-serde-processor")
+    annotationProcessor("io.micronaut.servlet:micronaut-servlet-processor")
+    annotationProcessor("io.micronaut.validation:micronaut-validation-processor")
+    implementation("io.micronaut:micronaut-discovery-core")
+    implementation("io.micronaut:micronaut-http-client")
+    implementation("io.micronaut:micronaut-management")
+    implementation("io.micronaut.data:micronaut-data-mongodb")
+    implementation("io.micronaut.discovery:micronaut-discovery-client")
+    implementation("io.micronaut.elasticsearch:micronaut-elasticsearch")
+    implementation("io.micronaut.graphql:micronaut-graphql")
+    implementation("io.micronaut.microstream:micronaut-microstream")
+    implementation("io.micronaut.microstream:micronaut-microstream-annotations")
+    implementation("io.micronaut.mongodb:micronaut-mongo-sync")
+    implementation("io.micronaut.multitenancy:micronaut-multitenancy")
+    implementation("io.micronaut.problem:micronaut-problem-json")
+    implementation("io.micronaut.security:micronaut-security")
+    implementation("io.micronaut.security:micronaut-security-jwt")
+    implementation("io.micronaut.security:micronaut-security-oauth2")
+    implementation("io.micronaut.security:micronaut-security-session")
+    implementation("io.micronaut.serde:micronaut-serde-jackson")
+    implementation("io.micronaut.validation:micronaut-validation")
+    implementation("io.micronaut.views:micronaut-views-velocity")
+    implementation("jakarta.annotation:jakarta.annotation-api")
+    implementation("jakarta.validation:jakarta.validation-api")
+    implementation("org.apache.logging.log4j:log4j-api")
+    implementation("org.apache.logging.log4j:log4j-api:2.23.1")
+    implementation platform("org.apache.logging.log4j:log4j-bom:2.24.3")
+    implementation("org.apache.logging.log4j:log4j-core:2.23.1")
+    implementation 'ch.qos.logback:logback-classic:1.4.14'
+    compileOnly("io.micronaut.openapi:micronaut-openapi-annotations")
+    compileOnly("org.projectlombok:lombok")
+    runtimeOnly("org.apache.logging.log4j:log4j-core")
+    runtimeOnly("org.apache.logging.log4j:log4j-slf4j-impl")
+    runtimeOnly("org.mongodb:mongodb-driver-sync")
+    runtimeOnly("org.slf4j:log4j-over-slf4j")
+    runtimeOnly("org.yaml:snakeyaml")
+    runtimeOnly 'org.slf4j:slf4j-api:2.0.9'
+}
+
+
+application {
+    mainClass = "io.github.mananshr.crud.Application"
+}
+java {
+    sourceCompatibility = JavaVersion.toVersion("25")
+    targetCompatibility = JavaVersion.toVersion("25")
+}
+
+
+graalvmNative.toolchainDetection = false
+
+micronaut {
+    runtime("tomcat")
+    testRuntime("junit5")
+    processing {
+        incremental(true)
+        annotations("io.github.mananshr.crud.*")
+    }
+    aot {
+        // Please review carefully the optimizations enabled below
+        // Check https://micronaut-projects.github.io/micronaut-aot/latest/guide/ for more details
+        optimizeServiceLoading = false
+        convertYamlToJava = false
+        precomputeOperations = true
+        cacheEnvironment = true
+        optimizeClassLoading = true
+        deduceEnvironment = true
+        optimizeNetty = true
+        replaceLogbackXml = false
+        configurationProperties.put("micronaut.security.jwks.enabled","false")
+        configurationProperties.put("micronaut.security.openid-configuration.enabled","false")
+    }
+}
+
+tasks.named("dockerfileNative") {
+    jdkVersion = "25"
+}
+
+tasks.withType(JavaExec) {
+    jvmArgs = ['-Xshare:off', '-XX:+IgnoreUnrecognizedVMOptions']
+}

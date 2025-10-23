@@ -1,0 +1,6 @@
+applicationType: default
+defaultPackage: io.github.mananshr.crud
+testFramework: junit
+sourceLanguage: java
+buildTool: gradle
+features: [annotation-api, app-name, asciidoctor, control-panel, data, data-mongodb, discovery-client, discovery-core, elasticsearch, graalvm, gradle, graphql, http-client, java, java-application, junit, langchain4j-store-mongodb-atlas, log4j2, lombok, management, micronaut-aot, micronaut-build, micronaut-http-validation, micronaut-test-rest-assured, microstream, microstream-rest, mongo-sync, multi-tenancy, openapi, openapi-adoc, openapi-explorer, problem-json, properties, readme, security, security-annotations, security-jwt, security-oauth2, security-session, serialization-jackson, shade, static-resources, test-resources, tomcat-server, validation, views-velocity]
