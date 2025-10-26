@@ -9,10 +9,10 @@
 ### Quickstart (local development)
 
 1. Clone:
-  
-   `git clone https://github.com/mananshr/Micronaut-Template.git`
-
-   `cd Micronaut-Template`
+  ```bash
+  git clone https://github.com/mananshr/Micronaut-Template.git
+  cd Micronaut-Template
+  ```
 
 2. Provide runtime configuration (do not commit):
    Create `.env` at project root or provide environment variables in your shell / IDE run configuration.
