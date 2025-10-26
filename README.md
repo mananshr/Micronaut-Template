@@ -33,9 +33,10 @@ JWT_SECRET="pleaseChangeThisSecret"
    - Windows: gradlew.bat build
 
 5. Run:
-   - ./gradlew run
-   - or: java -jar build/libs/<artifact>.jar
-   Ensure environment variables are available to the JVM (IDE run configuration or export in shell).
+   - `./gradlew run`
+   - or: `java -jar build/libs/<artifact>.jar`
+   
+   > Ensure environment variables are available to the JVM (IDE run configuration or export in shell).
 
 #### Runtime configuration priority
 
